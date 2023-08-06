@@ -1,8 +1,11 @@
 import 'layer.dart';
 
 class Network {
+  
   List<Layer> layers;
+  
   Network(this.layers);
+  
   List<double> forward(List<double> inputs) {
     var current = inputs;
     for (var layer in layers) {
@@ -11,7 +14,6 @@ class Network {
     return current;
   }
 
-  
   void train(List<List<double>> trainingData, List<double> labels, int epochs,
       double learningRate) {
     for (var epoch = 0; epoch < epochs; epoch++) {
@@ -29,21 +31,21 @@ class Network {
           var layer = layers[j];
           var deltas = <double>[];
 
-          for (var k = 0; k < layer.neurons.length; k++) {
-            var neuron = layer.neurons[k];
+          for (var k = 0; k < layer.perceptrons.length; k++) {
+            var perceptron = layer.perceptrons[k];
             var delta =
-                error * (output[0] * (1 - output[0])) * neuron.weights[k];
+                error * (output[0] * (1 - output[0])) * perceptron.weights[k];
             deltas.add(delta);
 
-            neuron.updateWeights(learningRate, delta, inputs);
+            perceptron.updateWeights(learningRate, delta, inputs);
           }
 
           error = deltas.reduce((sum, delta) => sum + delta);
         }
       }
 
-      print(
-          'Epoch $epoch - Mean Squared Error: ${totalError / trainingData.length}');
+      print("#$epoch");
+      print('Error: ${totalError / trainingData.length}\n');
     }
   }
 }

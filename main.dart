@@ -1,5 +1,3 @@
-// import 'Config/evaluator.dart';
-
 import 'network/layer.dart';
 import 'network/network.dart';
 import 'network/preceptron.dart';
@@ -26,13 +24,20 @@ void main() {
 
   var andNetwork = Network([inputLayer, outputLayer]);
 
+    print("-----------------------------------------------");
+  print("Training to perform AND Operation");
+  print("-----------------------------------------------");
+
   // Train the AND network
   andNetwork.train(andTrainingData, andLabels, 1000, 0.1);
 
   // Test the trained AND network
-  print("\nTrained AND Network");
+  print("-----------------------------------------------");
+  print("Testing to perform AND Operation");
+  print("-----------------------------------------------");
   print("0 AND 0 = ${andNetwork.forward([0, 0])[0]}");
   print("0 AND 1 = ${andNetwork.forward([0, 1])[0]}");
   print("1 AND 0 = ${andNetwork.forward([1, 0])[0]}");
   print("1 AND 1 = ${andNetwork.forward([1, 1])[0]}");
+  print("-----------------------------------------------");
 }
