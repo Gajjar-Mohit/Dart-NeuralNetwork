@@ -27,7 +27,7 @@ void main() {
   var andNetwork = Network([inputLayer, outputLayer]);
 
   // Train the AND network
-  andNetwork.train(andTrainingData, andLabels, 1, 0.1);
+  andNetwork.train(andTrainingData, andLabels, 1000, 0.1);
 
   // Test the trained AND network
   print("\nTrained AND Network");
